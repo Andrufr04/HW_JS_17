@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Follow Frog</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   
+   <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: url('img/bg.jpg') no-repeat center center fixed;
+        }
+
+        .frog {
+            position: absolute;
+            width: 300px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <img src="img/frog.png" alt="Frog" class="frog" id="frog">
+
+    <script>
+        $(document).ready(function() {
+
+            $(document).on('mousemove', function(event) {
+                const mouseX = event.pageX;
+                const mouseY = event.pageY;
+                const screenWidth = $(window).width();
+
+                $('#frog').css({
+                    left: mouseX - $('#frog').width() / 2 + 'px',
+                    top: mouseY - $('#frog').height() / 2 + 'px'
+                });
+
+                if (mouseX < screenWidth / 2) {
+                    $('#frog').css('transform', 'scaleX(-1)');
+                } 
+                else {
+                    $('#frog').css('transform', 'scaleX(1)');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
